@@ -70,3 +70,12 @@ resetFunction = function(event) {
 
 document.onclick = resetFunction
 document.onmousedown = resetFunction
+
+findEditableNode = function(nodes) {
+  nodesAsList = Array.from(nodes);
+  for (let i = 0; i < nodesAsList.length; i++) {
+    if (nodesAsList[i].tagName === "INPUT" | nodesAsList[i].tagName === "TEXTAREA") {
+      return nodes[i];
+    }
+  }
+}
