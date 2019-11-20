@@ -1,0 +1,17 @@
+{
+  "name": "Bracketize",
+  "version": "1.0",
+  "description": "Surround any highlighted word with brackets",
+  "permissions": ["storage"],
+  "background": {
+    "scripts": ["lib/utils.js", "background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/utils.js", "contentScript.js"]
+    }
+  ],
+  "manifest_version": 2
+}
