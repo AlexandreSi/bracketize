@@ -12,26 +12,6 @@ document.onkeydown = function(event) {
         payload: event.key,
       },
       function(newText) {
-        // let sel = document.getSelection()
-        // console.log(sel)
-        // const { childNodes } = sel.anchorNode
-        // const childNodesTags = []
-        // for (let childNode of childNodes) {
-        //   childNodesTags.push(childNode.tagName)
-        // }
-        // const compatibleTags = ['INPUT', 'TEXTAREA']
-        // let childNodeIndex;
-        // for (let childNodeTagIndex = 0; childNodeTagIndex < childNodesTags.length; childNodeTagIndex++) {
-        //   if (compatibleTags.indexOf(childNodesTags[childNodeTagIndex]) >= 0) {
-        //     childNodeIndex = childNodeTagIndex
-        //     break
-        //   }
-        // }
-        // const childNode = childNodes.item(childNodeIndex);
-        // inputValue = childNode.value
-        // const selectionStart = childNode.selectionStart
-        // const selectionEnd = childNode.selectionEnd
-        // const wholeNewText = `${inputValue.substring(0, selectionStart)}${newText}${inputValue.substring(selectionEnd, inputValue.length)}`
         document.execCommand(
           "insertText",
           false,
@@ -44,9 +24,7 @@ document.onkeydown = function(event) {
 
 document.onselect = function(event) {
   try {
-    sel = document.getSelection()
-    input = sel.anchorNode.childNodes[1]
-    inputValue = input.value
+    const sel = document.getSelection()
 
     chrome.runtime.sendMessage(
       {
@@ -70,12 +48,3 @@ resetFunction = function(event) {
 
 document.onclick = resetFunction
 document.onmousedown = resetFunction
-
-findEditableNode = function(nodes) {
-  nodesAsList = Array.from(nodes);
-  for (let i = 0; i < nodesAsList.length; i++) {
-    if (nodesAsList[i].tagName === "INPUT" | nodesAsList[i].tagName === "TEXTAREA") {
-      return nodes[i];
-    }
-  }
-}
